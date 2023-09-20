@@ -1,0 +1,4 @@
+wget "https://nodejs.org/dist/v18.18.0/node-v18.18.0-win-x64.zip" -outfile "node.zip"
+Expand-Archive ./node.zip -DestinationPath ./node
+
+$env:Path += ";C:/Users/$($env:UserName)/TNM040-React/lab1/node/node-v18.18.0-win-x64"
