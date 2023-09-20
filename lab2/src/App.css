@@ -5,10 +5,17 @@
   text-align: left;
 }
 
+.searchBar {
+  margin: auto;
+  width: 100%;
+  min-width: 100px;
+  font-size: 1.2em;
+}
 
 .countryContainer {
   display: flex;
   gap: 1em;
+  padding-top: 2em;
 }
 
 .column {
@@ -21,6 +28,7 @@
 }
 
 .country {
+  min-width: 400px;
   flex: 1;
   padding: 0.5em;
 }
