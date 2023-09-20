@@ -41,6 +41,23 @@
   color: #888;
 }
 
+.countryContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.countryName {
+  font-weight: 700;
+}
+
 .country {
-  font-weight: bold;
+  padding: .5em
+}
+
+.country:nth-child(2n) {
+  background-color: #fafafa;
+}
+
+.country:nth-child(odd) {
+  background-color: #f0f0f0
 }

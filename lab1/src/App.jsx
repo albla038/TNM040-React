@@ -15,9 +15,9 @@ function App() {
   const maxArea = sortedList[0].area
 
   return (
-    <div>
+    <div className="countryContainer">
       {sortedList.map((d, i) => (
-        <CountryInfo key={d.cca3} data={d} widthRatio={(d.area/maxArea)*100*4 + "%"} detailed={i < 5}/>
+        <CountryInfo key={d.cca3} data={d} widthRatio={(d.area/maxArea)*100 + "%"} detailed={i < 5}/>
       ))}
     </div>
     
