@@ -1,47 +1,17 @@
 #root {
   max-width: 1280px;
-  margin: 25px 25px;
+  margin: auto;
   padding: 2rem;
   text-align: left;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
 
 .countryContainer {
+  display: flex;
+  gap: 1em;
+}
+
+.column {
   display: flex;
   flex-direction: column;
 }
@@ -51,7 +21,8 @@
 }
 
 .country {
-  padding: .5em
+  flex: 1;
+  padding: 0.5em;
 }
 
 .country:nth-child(2n) {
@@ -60,4 +31,37 @@
 
 .country:nth-child(odd) {
   background-color: #f0f0f0
+}
+
+.animatedBar {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: drawBar;
+  animation-name: drawBar;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0
+}
+
+@-webkit-keyframes drawBar {
+  0% {
+      -webkit-transform: scaleX(0);
+      transform: scaleX(0)
+  }
+
+  to {
+      -webkit-transform: scaleX(100%);
+      transform: scaleX(100%)
+  }
+}
+
+@keyframes drawBar {
+  0% {
+      -webkit-transform: scaleX(0);
+      transform: scaleX(0)
+  }
+
+  to {
+      -webkit-transform: scaleX(100%);
+      transform: scaleX(100%)
+  }
 }

@@ -1,29 +1,26 @@
+const CountryInfo = ({ data, widthRatio, detailed }) => {
+  const roundedArea = Math.round(data.area / 100000) / 10;
 
-
-const CountryInfo = ({data, widthRatio, detailed}) => { //varför brackets men inte på props? Svar: om man skriver props ska det ej vara brackets. props är då parent till hela objektet
-    return (
-        <div className="country">
-                <span className="countryName">{data.name.common} </span>{data.area} km<sup>2</sup>
-            <div 
-                style={{
-                    width: widthRatio,
-                    height: "0.5em",
-                    display: "block",
-                    backgroundColor: "#205da2"
-                }}
-            />
-            {detailed == true && 
-                <div>
-                    <div>
-                        Capital: {data.capital[0]}
-                    </div>
-                    <div>
-                        Region: {data.subregion}
-                    </div>
-                </div>
-            }
+  return (
+    <div className="country">
+      <span className="countryName">{data.name.common} </span>
+      {roundedArea} million km<sup>2</sup>
+      <div className="animatedBar"
+        style={{
+          width: widthRatio,
+          height: "0.5em",
+          display: "block",
+          backgroundColor: "#205da2",
+        }}
+      ></div>
+      {detailed && (
+        <div>
+          <div>Capital: {data.capital[0]}</div>
+          <div>Region: {data.subregion}</div>
         </div>
-    )
-}
+      )}
+    </div>
+  );
+};
 
-export default CountryInfo
+export default CountryInfo;

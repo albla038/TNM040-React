@@ -1,27 +1,41 @@
-
-import './App.css'
-import countries from 'world-countries'
-import CountryInfo from './CountryInfo.jsx'
+import "./App.css";
+import countries from "world-countries";
+import CountryInfo from "./CountryInfo.jsx";
 
 function App() {
+  const sortedList = countries
+    .filter((a) => a.name.common != "Antarctica")
+    .sort((b, c) => c.area - b.area)
+    .slice(0, 15);
 
-  //console.log("Hello world!")
-  //console.log(countries)
-
-  const sortedList = countries.filter((a) => a.name.common != "Antarctica")
-                              .sort((b, c) => c.area - b.area)
-                              .slice(0, 15)                        //Best practice för chained functions?
-
-  const maxArea = sortedList[0].area
+  const maxArea = sortedList[0].area;
+  const detailedList = sortedList.slice(0, 5);
+  const normalList = sortedList.slice(5, 15);
 
   return (
     <div className="countryContainer">
-      {sortedList.map((d, i) => (
-        <CountryInfo key={d.cca3} data={d} widthRatio={(d.area/maxArea)*100 + "%"} detailed={i < 5}/>
-      ))}
+      <div className="column">
+        {detailedList.map((d, i) => (
+          <CountryInfo
+            key={d.cca3}
+            data={d}
+            widthRatio={(d.area / maxArea) * 100 + "%"}
+            detailed={true}
+          />
+        ))}
+      </div>
+      <div className="column">
+        {normalList.map((d, i) => (
+          <CountryInfo
+            key={d.cca3}
+            data={d}
+            widthRatio={(d.area / maxArea) * 100 + "%"}
+            detailed={false}
+          />
+        ))}
+      </div>
     </div>
-    
-  )
+  );
 }
 
-export default App
+export default App;
