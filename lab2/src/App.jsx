@@ -4,7 +4,7 @@ import CountryInfo from "./CountryInfo.jsx";
 import { BrowserRouter, Routes, Route, useParams, Link } from "react-router-dom";
 import { useState } from "react";
 
-function App() { // Component resposible for user routing //När ska man använda / i paths?
+function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -19,13 +19,29 @@ function App() { // Component resposible for user routing //När ska man använd
 
 function CountryDetails() {
   let { cca3 } = useParams();
+  const foundCountry = getCountryByCca3(cca3);
+  const borderCountries = foundCountry.borders.map((country) => (getCountryByCca3(country)));
+  const sortedCountries = borderCountries.sort((a,b) => b.area - a.area)
+  const maxArea = countries.sort((a,b) => b.area - a.area)[0].area;
 
   return (
-    <div>
-    <div>{cca3}</div>
-    <Link to="/">Return</Link>
-    </div>
+      <div className="countryContainer">
+        <div className="column">
+          {sortedCountries.map((d) => 
+            <CountryInfo
+              key={d.cca3}
+              data={d}
+              widthRatio={(d.area / maxArea) * 100 + "%"}
+              detailed={true}
+            />)}
+        </div>
+        <Link to="/">Return</Link>
+      </div>
   )
+}
+
+function getCountryByCca3(cca3){
+  return countries.find((country) => country.cca3 === cca3);
 }
 
 function CountryList() {
@@ -54,7 +70,6 @@ function CountryList() {
   const maxArea = countries.sort((a,b) => b.area - a.area)[0].area;
   const detailedList = sortedList.slice(0, 5);
   const normalList = sortedList.slice(5, 15);
-  console.log(detailedList)
 
   return (
     <div className="main">
