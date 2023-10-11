@@ -1,9 +1,34 @@
 import "./App.css";
 import countries from "world-countries";
 import CountryInfo from "./CountryInfo.jsx";
+import { BrowserRouter, Routes, Route, useParams, Link } from "react-router-dom";
 import { useState } from "react";
 
-function App() {
+function App() { // Component resposible for user routing //När ska man använda / i paths?
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<CountryList />} />
+        <Route path="country/:cca3" element={<CountryDetails />} />
+        <Route path="*" element={<h1>404. Game over dude</h1>}/>
+        <Route path="country/*" element={<h1>404. No country found dude</h1>}/>
+      </Routes>
+    </BrowserRouter>
+  )
+}
+
+function CountryDetails() {
+  let { cca3 } = useParams();
+
+  return (
+    <div>
+    <div>{cca3}</div>
+    <Link to="/">Return</Link>
+    </div>
+  )
+}
+
+function CountryList() {
   const [searchString, setSearchString] = useState("");
 
   function changeInput(event) {
